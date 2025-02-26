@@ -6,7 +6,6 @@ const sketchPad = document.querySelector("#container");
 
 do {
     let gridTile = document.createElement("div");
-    gridTile.setAttribute("id", "tile" + counter.toString());
     gridTile.classList.add("tiles");
     sketchPad.appendChild(gridTile);
     counter++;
@@ -14,15 +13,23 @@ do {
 
 const tileList = document.querySelectorAll(".tiles");
 
-sketchPad.addEventListener("mousedown", () => {
-    
+sketchPad.addEventListener("mousedown", paintTile);
+sketchPad.addEventListener("mouseup", stopPainting);
+
+function paintTile() {
     tileList.forEach((item) => {
-        item.addEventListener("mouseover", () => {
-            item.classList.add("paintedTile");
-        });
+        item.addEventListener("mouseover", applyPaint)
     });
-    
-});
+}
 
+function stopPainting() {    
+    tileList.forEach((item) => {
+        item.removeEventListener("mouseover", applyPaint);
+    });
+}
 
+function applyPaint(e) {
+    let targetTile = e.target;
+    targetTile.classList.add("paintedTile");
+}
 
