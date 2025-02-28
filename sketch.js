@@ -18,13 +18,13 @@ sketchPad.addEventListener("mouseup", stopPainting);
 
 function paintTile() {
     tileList.forEach((item) => {
-        item.addEventListener("mouseover", applyPaint)
+        item.addEventListener("mousemove", applyPaint)
     });
 }
 
 function stopPainting() {    
     tileList.forEach((item) => {
-        item.removeEventListener("mouseover", applyPaint);
+        item.removeEventListener("mousemove", applyPaint)
     });
 }
 
