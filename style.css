@@ -4,6 +4,9 @@
 
 }
 
+/* 100(the percentage of current screen size) / 16(default
+tiles per row) is 6.25(round down for each tile size to fit
+desired tiles per row. */
 .tiles {
     flex: 0 0 6%;
     aspect-ratio: 1 / 1;
