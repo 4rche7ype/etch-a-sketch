@@ -21,6 +21,7 @@ function createGrid() {
         sketchPad.appendChild(gridTile);
         counter++;
     } while (counter < sketchSize);
+    counter = 0;
 }
 
 function paintTile() {
@@ -43,15 +44,17 @@ function applyPaint(e) {
 function customGrid() {
     let newGridSize = prompt ("Enter a number from 1 to 100 (tiles per row) for new grid size")
     Number(newGridSize);
-    let tileSize = Math.round(100 / newGridSize);
-    
+    let tileSize = 100 / newGridSize;
     if (newGridSize >= 1 && newGridSize <= 100 && newGridSize != null && newGridSize != NaN) {
         sketchSize = newGridSize * newGridSize;
         sketchPad.textContent = "";
         do {
             let gridTile = document.createElement("div");
             gridTile.classList.add("customTiles");
-            gridTile.style.flex = "0 0 " + tileSize + "%";
+            gridTile.setAttribute("id", "tile"+counter);
+            gridTile.style.flex = "0 0 " + tileSize.toFixed(0) + "%";
+            gridTile.style.maxWidth = tileSize + "%";
+            gridTile.textContent = counter + 1; //temp
             sketchPad.appendChild(gridTile);
             counter++;
         } while (counter < sketchSize);
