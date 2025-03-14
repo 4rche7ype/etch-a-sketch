@@ -1,12 +1,7 @@
-let height = 16;
-let width = 16;
-let sketchSize = height * width;
-let counter = 0;
 const sketchPad = document.querySelector("#container");
-
 const newGrid = document.querySelector("#newGridBtn");
-newGrid.addEventListener("click", customGrid);
 
+newGrid.addEventListener("click", customGrid);
 createGrid();
 
 let tileList = document.querySelectorAll(".tiles");
@@ -15,13 +10,21 @@ sketchPad.addEventListener("mousedown", paintTile);
 sketchPad.addEventListener("mouseup", stopPainting);
 
 function createGrid() {
+    let outerCounter = 0;
+    let innerCounter = 0;
     do {
-        let gridTile = document.createElement("div");
-        gridTile.classList.add("tiles");
-        sketchPad.appendChild(gridTile);
-        counter++;
-    } while (counter < sketchSize);
-    counter = 0;
+        let generatedDiv = document.createElement("div");
+        generatedDiv.classList.add("generatedDivs");
+        do {
+            let gridTile = document.createElement("div");
+            gridTile.classList.add("tiles");
+            generatedDiv.appendChild(gridTile);
+            innerCounter++;
+        }while (innerCounter < 16);
+        innerCounter = 0;
+        sketchPad.appendChild(generatedDiv);
+        outerCounter++;
+    } while (outerCounter < 16);
 }
 
 function paintTile() {
@@ -44,22 +47,24 @@ function applyPaint(e) {
 function customGrid() {
     let newGridSize = prompt ("Enter a number from 1 to 100 (tiles per row) for new grid size")
     Number(newGridSize);
-    let tileSize = 100 / newGridSize;
     if (newGridSize >= 1 && newGridSize <= 100 && newGridSize != null && newGridSize != NaN) {
-        sketchSize = newGridSize * newGridSize;
         sketchPad.textContent = "";
+        let outerCounter = 0;
+        let innerCounter = 0;   
         do {
-            let gridTile = document.createElement("div");
-            gridTile.classList.add("customTiles");
-            gridTile.setAttribute("id", "tile"+counter);
-            gridTile.style.flex = "0 0 " + tileSize.toFixed(0) + "%";
-            gridTile.style.maxWidth = tileSize + "%";
-            gridTile.textContent = counter + 1; //temp
-            sketchPad.appendChild(gridTile);
-            counter++;
-        } while (counter < sketchSize);
-        tileList = document.querySelectorAll(".customTiles");
-        counter = 0;
+            let generatedDiv = document.createElement("div");
+            generatedDiv.classList.add("generatedDivs");
+            do {
+                let gridTile = document.createElement("div");
+                gridTile.classList.add("tiles");
+                generatedDiv.appendChild(gridTile);
+                innerCounter++;
+            }while (innerCounter < newGridSize);
+            innerCounter = 0;
+            sketchPad.appendChild(generatedDiv);
+            outerCounter++;
+        } while (outerCounter < newGridSize);
+        tileList = document.querySelectorAll(".tiles");
     } else {
         alert("Invalid Input.\nPlease enter a number from 1 to 100.");
     }

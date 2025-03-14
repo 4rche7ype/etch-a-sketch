@@ -5,7 +5,7 @@ body {
 
 #container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 #newGridBtn {
@@ -17,18 +17,16 @@ body {
     cursor: pointer;
 }
 
-/* 100(the percentage of current screen size) / 16(default
-tiles per row) is 6.25(round down for each tile size to fit
-desired tiles per row. */
+.generatedDivs {
+    display: flex;
+}
+
 .tiles {
-    flex: 0 0 6%;
+    flex: 1 1 auto;
     aspect-ratio: 1 / 1;
     border: 1px solid black;
 }
-.customTiles {
-    aspect-ratio: 1 / 1;
-    border: 1px solid black; 
-}
+
 .paintedTile {
     background-color: black;
 }
