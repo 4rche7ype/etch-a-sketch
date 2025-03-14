@@ -1,11 +1,10 @@
 const sketchPad = document.querySelector("#container");
 const newGrid = document.querySelector("#newGridBtn");
 
-newGrid.addEventListener("click", customGrid);
 createGrid();
-
 let tileList = document.querySelectorAll(".tiles");
 
+newGrid.addEventListener("click", customGrid);
 sketchPad.addEventListener("mousedown", paintTile);
 sketchPad.addEventListener("mouseup", stopPainting);
 

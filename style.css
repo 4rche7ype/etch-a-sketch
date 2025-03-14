@@ -1,11 +1,13 @@
 body {
     display:flex;
     flex-direction: column;
+    align-items: center;
 }
 
 #container {
     display: flex;
     flex-direction: column;
+    max-width: 940px;
 }
 
 #newGridBtn {
@@ -15,6 +17,7 @@ body {
     padding: 8px 12px;
     margin: 4px 0px;
     cursor: pointer;
+    max-width: 940px;
 }
 
 .generatedDivs {
