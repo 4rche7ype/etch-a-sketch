@@ -40,7 +40,14 @@ function stopPainting() {
 
 function applyPaint(e) {
     let targetTile = e.target;
-    targetTile.classList.add("paintedTile");
+    //targetTile.classList.add("paintedTile");
+    let red = Math.random() * 100;
+    red = red.toFixed(0);
+    let green = Math.random() * 100;
+    green = green.toFixed(0);
+    let blue = Math.random() * 100;
+    blue = blue.toFixed(0);
+    targetTile.style.backgroundColor = "rgb(" + red + "%, " + green + "%, " + blue + "%)";
 }
 
 function customGrid() {
