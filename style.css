@@ -30,5 +30,5 @@ body {
 }
 
 .paintedTile {
-    background-color: black;
+   opacity: .1;
 }
