@@ -2,6 +2,7 @@ const sketchPad = document.querySelector("#container");
 const newGrid = document.querySelector("#newGridBtn");
 
 createGrid();
+
 let tileList = document.querySelectorAll(".tiles");
 
 newGrid.addEventListener("click", customGrid);
@@ -29,30 +30,39 @@ function createGrid() {
 function paintTile() {
     tileList.forEach((item) => {
         item.addEventListener("mousemove", applyPaint)
+        item.addEventListener("mouseenter", increaseOpacity)
     });
 }
 
 function stopPainting() {    
     tileList.forEach((item) => {
         item.removeEventListener("mousemove", applyPaint)
+        item.removeEventListener("mouseenter", increaseOpacity)
     });
 }
 
 function applyPaint(e) {
     let targetTile = e.target;
-    //targetTile.classList.add("paintedTile");
-    if (targetTile.hasAttribute("style") == false) {
+    if (targetTile.style.backgroundColor == "") {
         let red = Math.random() * 100;
         red = red.toFixed(0);
         let green = Math.random() * 100;
         green = green.toFixed(0);
         let blue = Math.random() * 100;
-        blue = blue.toFixed(0);
-        let opacity = 0.1;
+        blue = blue.toFixed(0);  
         targetTile.style.backgroundColor = "rgb(" + red + "%, " + green + "%, " + blue + "%)";
-        targetTile.style.opacity = opacity;
-    };
+        targetTile.style.opacity = .1;
+    }
+}
 
+function increaseOpacity(e) {
+    let targetTile = e.target;
+    currentOpacity = targetTile.style.opacity;
+    currentOpacity = Number(currentOpacity);
+    if (currentOpacity < 1) {
+        currentOpacity += .1;
+        targetTile.style.opacity = currentOpacity;
+    }
 }
 
 function customGrid() {
